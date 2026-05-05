@@ -9,11 +9,13 @@ import { TrendingUp, AlertTriangle, ShieldCheck, Wallet, Calendar, Settings as S
 import { cn } from "@/lib/utils"
 import { useState } from "react"
 import { BudgetGuardModal } from "./BudgetGuardModal"
+import { ResilienceModal } from "./ResilienceModal"
 import Link from "next/link"
 
 export function Dashboard() {
   const { user, resilienceScore, safeDailySpend, cashflowRisk, debtRiskScore } = useStore()
   const [showGuardModal, setShowGuardModal] = useState(false)
+  const [showResilienceModal, setShowResilienceModal] = useState(false)
 
   return (
     <div className="p-4 space-y-6 pb-24 max-w-lg mx-auto">
@@ -27,9 +29,14 @@ export function Dashboard() {
           <Link href="/settings" className="p-2 rounded-xl bg-slate-100 border border-slate-200 text-slate-500 hover:text-primary transition-colors">
             <SettingsIcon className="w-5 h-5" />
           </Link>
-          <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-bold text-xs">
+          <motion.button 
+            whileTap={{ scale: 0.9 }}
+            onClick={() => setShowResilienceModal(true)}
+            className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-bold text-xs relative overflow-hidden group shadow-sm shadow-primary/20 hover:bg-primary/20 transition-colors"
+          >
+            <span className="absolute inset-0 bg-white/20 blur-sm translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></span>
             {resilienceScore}%
-          </div>
+          </motion.button>
         </div>
       </header>
 
@@ -182,6 +189,12 @@ export function Dashboard() {
       <BudgetGuardModal 
         isOpen={showGuardModal} 
         onClose={() => setShowGuardModal(false)} 
+      />
+
+      <ResilienceModal
+        isOpen={showResilienceModal}
+        onClose={() => setShowResilienceModal(false)}
+        score={resilienceScore}
       />
     </div>
   )
