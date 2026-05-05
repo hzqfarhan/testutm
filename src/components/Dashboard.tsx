@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
-import { TrendingUp, AlertTriangle, ShieldCheck, Wallet, Calendar, Settings as SettingsIcon, List, QrCode, Send, History } from "lucide-react"
+import { TrendingUp, AlertTriangle, ShieldCheck, Wallet, Calendar, Settings as SettingsIcon, QrCode, Send, History } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
 import { BudgetGuardModal } from "./BudgetGuardModal"
@@ -23,9 +23,7 @@ export function Dashboard() {
           <p className="text-muted-foreground text-sm">Status: <span className="text-primary font-medium">{resilienceScore > 70 ? 'Strong' : 'Watch'}</span></p>
         </div>
         <div className="flex items-center gap-3">
-          <Link href="/transactions" className="p-2 rounded-xl bg-slate-100 border border-slate-200 text-slate-500 hover:text-primary transition-colors">
-            <List className="w-5 h-5" />
-          </Link>
+
           <Link href="/settings" className="p-2 rounded-xl bg-slate-100 border border-slate-200 text-slate-500 hover:text-primary transition-colors">
             <SettingsIcon className="w-5 h-5" />
           </Link>
