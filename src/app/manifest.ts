@@ -8,8 +8,10 @@ export default function manifest(): MetadataRoute.Manifest {
     name: 'Resilience Agent',
     short_name: 'Resilience',
     description: 'AI-powered financial resilience companion for students.',
-    start_url: '/',
+    start_url: '/utmkathon/',
+    scope: '/utmkathon/',
     display: 'standalone',
+
     background_color: '#F8FAFC',
     theme_color: '#1E3A8A',
     icons: [
