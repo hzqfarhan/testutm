@@ -12,9 +12,12 @@ export const metadata: Metadata = {
   description: "Secure your financial future with AI-powered resilience agents.",
   manifest: "/manifest.json",
   appleWebApp: {
-    capable: true,
-    statusBarStyle: "default",
     title: "Resilience",
+    statusBarStyle: "default",
+    capable: true,
+  },
+  formatDetection: {
+    telephone: false,
   },
 };
 
