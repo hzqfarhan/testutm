@@ -1,0 +1,47 @@
+import type { Metadata, Viewport } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { Navbar } from "@/components/layout/Navbar";
+import { CoachFAB } from "@/components/layout/CoachFAB";
+
+const inter = Inter({ subsets: ["latin"] });
+
+
+export const metadata: Metadata = {
+  title: "Resilience Agent | AI Financial Companion",
+  description: "Secure your financial future with AI-powered resilience agents.",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Resilience",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0a0a0c",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className={`${inter.className} bg-background text-foreground min-h-screen selection:bg-primary/30`}>
+        <main className="min-h-screen">
+          {children}
+        </main>
+        <CoachFAB />
+        <Navbar />
+      </body>
+
+    </html>
+  );
+}
+
