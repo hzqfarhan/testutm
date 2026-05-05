@@ -7,8 +7,8 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, 
   BarChart, Bar, Cell, PieChart, Pie
 } from 'recharts'
-import { motion } from "framer-motion"
 import { TrendingUp, Award, Calendar, ChevronRight } from "lucide-react"
+import { t } from "@/lib/translations"
 
 const spendingData = [
   { name: 'Mon', amount: 45 },
@@ -28,13 +28,14 @@ const categoryData = [
 ]
 
 export function Reports() {
-  const { resilienceScore } = useStore()
+  const { resilienceScore, language } = useStore()
+  const strings = t[language]
 
   return (
     <div className="p-4 space-y-6 pb-24 max-w-lg mx-auto">
       <header className="space-y-1">
-        <h1 className="text-2xl font-bold">Weekly Report</h1>
-        <p className="text-muted-foreground text-sm">May 1 - May 7, 2026</p>
+        <h1 className="text-2xl font-bold">{strings.reportHeader}</h1>
+        <p className="text-muted-foreground text-sm">{strings.reportSubheader}</p>
       </header>
 
       {/* Resilience Trend */}
@@ -69,7 +70,7 @@ export function Reports() {
 
       {/* Achievements / Nudge History */}
       <div className="space-y-3">
-        <h3 className="text-sm font-semibold px-1">Resilience Milestones</h3>
+        <h3 className="text-sm font-semibold px-1">{strings.reportMilestones}</h3>
         <Card className="glass-card">
           <CardContent className="p-4 space-y-4">
             <div className="flex gap-4 items-center">
@@ -77,8 +78,8 @@ export function Reports() {
                 <Award className="w-6 h-6" />
               </div>
               <div className="flex-1">
-                <p className="text-xs font-bold">Streak: 5 Days Safe</p>
-                <p className="text-[10px] text-muted-foreground">You&apos;ve stayed within your safe daily limit for 5 days!</p>
+                <p className="text-xs font-bold">{strings.reportMileEmerg}</p>
+                <p className="text-[10px] text-muted-foreground">{strings.reportMileEmergDesc}</p>
               </div>
               <Badge className="bg-emerald-500/20 text-emerald-500 border-emerald-500/30">+12 Pts</Badge>
             </div>
@@ -87,8 +88,8 @@ export function Reports() {
                 <Calendar className="w-6 h-6" />
               </div>
               <div className="flex-1">
-                <p className="text-xs font-bold">Accepted: Weekend Guard</p>
-                <p className="text-[10px] text-muted-foreground">Saved RM 45.00 by activating guard on Saturday.</p>
+                <p className="text-xs font-bold">{strings.reportMileDebt}</p>
+                <p className="text-[10px] text-muted-foreground">{strings.reportMileDebtDesc}</p>
               </div>
               <Badge className="bg-emerald-500/20 text-emerald-500 border-emerald-500/30">RM 45 Saved</Badge>
             </div>
@@ -98,7 +99,7 @@ export function Reports() {
 
       {/* Category Breakdown */}
       <div className="space-y-3">
-        <h3 className="text-sm font-semibold px-1">Spending Breakdown</h3>
+        <h3 className="text-sm font-semibold px-1">{strings.reportBreakdown}</h3>
         <div className="grid grid-cols-1 gap-4">
           <Card className="glass-card p-4">
             <div className="flex items-center gap-6">
@@ -139,12 +140,12 @@ export function Reports() {
       <Card className="glass-card bg-primary/5 border-primary/20">
         <CardContent className="p-4 flex justify-between items-center">
           <div className="space-y-1">
-            <p className="text-[10px] uppercase font-bold text-primary tracking-widest">Projected Month-End</p>
+            <p className="text-[10px] uppercase font-bold text-primary tracking-widest">{strings.reportProjBal}</p>
             <p className="text-xl font-bold">RM 124.50</p>
           </div>
           <div className="text-right space-y-1">
             <p className="text-[10px] text-emerald-500 font-bold uppercase">+ RM 20.00</p>
-            <p className="text-[9px] text-muted-foreground italic">Compared to last month</p>
+            <p className="text-[9px] text-muted-foreground italic">{strings.reportProjDesc}</p>
           </div>
         </CardContent>
       </Card>

@@ -7,14 +7,17 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { MessageSquare, Send, Sparkles, User } from "lucide-react"
-import { motion } from "framer-motion"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
+import { t } from "@/lib/translations"
 
 export function Coach() {
-  const { user, safeDailySpend, resilienceScore } = useStore()
+  const { user, safeDailySpend, resilienceScore, language } = useStore()
+  const strings = t[language]
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: `Hi ${user.name}! I'm your Resilience Coach. Your current safety limit is RM ${safeDailySpend.toFixed(2)} per day. How can I help you stay on track?` }
+    { role: 'assistant', content: language === 'ms' 
+      ? `Hai ${user.name}! Saya Jurulatih Ketahanan anda. Had selamat semasa anda ialah RM ${safeDailySpend.toFixed(2)} sehari. Bagaimana saya boleh bantu anda kekal di landasan yang betul?`
+      : `Hi ${user.name}! I'm your Resilience Coach. Your current safety limit is RM ${safeDailySpend.toFixed(2)} per day. How can I help you stay on track?` }
   ])
   const [input, setInput] = useState("")
 
@@ -46,7 +49,7 @@ export function Coach() {
       <header className="flex justify-between items-center">
         <div className="flex items-center gap-2">
           <Sparkles className="w-5 h-5 text-primary text-glow" />
-          <h1 className="text-xl font-bold">AI Coach</h1>
+          <h1 className="text-xl font-bold">{strings.coachHeader}</h1>
         </div>
         <Badge variant="outline" className="text-[10px] bg-primary/10 border-primary/20 text-primary">
           RESILIENCE: {resilienceScore}%
@@ -86,7 +89,7 @@ export function Coach() {
         {/* Suggestion Chips */}
         <ScrollArea className="w-full whitespace-nowrap pb-2">
           <div className="flex gap-2 px-1">
-            {["Can I afford RM180 shoes?", "Predict my broke date", "How to improve score?", "Safe limit today?"].map((suggestion) => (
+            {[strings.coachChipLimit, strings.coachChipSafe, strings.coachChipSave].map((suggestion) => (
               <button
                 key={suggestion}
                 onClick={() => sendMessage(suggestion)}
@@ -100,7 +103,7 @@ export function Coach() {
 
         <div className="relative">
           <Input 
-            placeholder="Ask about your budget..." 
+            placeholder={strings.coachInputPlaceholder} 
             className="pr-12 bg-card border-slate-200 h-12 rounded-2xl"
             value={input}
             onChange={(e) => setInput(e.target.value)}

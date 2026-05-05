@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { motion, AnimatePresence } from "framer-motion"
 import { Zap, Activity, Cpu, Shield, Brain, Target, MessageCircle, AlertCircle, CheckCircle2 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { t } from "@/lib/translations"
 
 const agentIcons: Record<string, any> = {
   orch: Cpu,
@@ -19,16 +20,17 @@ const agentIcons: Record<string, any> = {
 }
 
 export function AgentCommandCenter() {
-  const { agents } = useStore()
+  const { agents, language } = useStore()
+  const strings = t[language]
 
   return (
     <div className="p-4 space-y-6 pb-24 max-w-lg mx-auto">
       <header className="space-y-1">
         <div className="flex items-center gap-2">
           <Zap className="w-5 h-5 text-primary text-glow" />
-          <h1 className="text-2xl font-bold">Agent Command</h1>
+          <h1 className="text-2xl font-bold">{strings.agentHeader}</h1>
         </div>
-        <p className="text-muted-foreground text-sm">Orchestrating 10 financial guardians</p>
+        <p className="text-muted-foreground text-sm">{strings.agentSubheader}</p>
       </header>
 
       {/* Orchestrator Status */}
@@ -42,14 +44,14 @@ export function AgentCommandCenter() {
         </div>
         <CardHeader className="p-4 flex flex-row items-center justify-between space-y-0">
           <CardTitle className="text-sm font-bold flex items-center gap-2">
-            <Cpu className="w-4 h-4 text-primary" /> System Orchestrator
+            <Cpu className="w-4 h-4 text-primary" /> {strings.agentNameOrch}
           </CardTitle>
           <Badge variant="outline" className="text-[10px] bg-primary/10 text-primary border-primary/30">
-            ACTIVE
+            {strings.agentOrchStatus}
           </Badge>
         </CardHeader>
         <CardContent className="p-4 pt-0">
-          <p className="text-xs text-muted-foreground italic">"Analyzing user behavior... all agents synchronized. Current priority: Cashflow protection."</p>
+          <p className="text-xs text-muted-foreground italic">{strings.agentOrchLog}</p>
         </CardContent>
       </Card>
 
@@ -78,10 +80,10 @@ export function AgentCommandCenter() {
                   <div className="space-y-2 flex-1">
                     <div className="flex justify-between items-start">
                       <div>
-                        <h3 className="text-sm font-bold">{agent.name}</h3>
+                        <h3 className="text-sm font-bold">{strings[('agentName' + agent.id.charAt(0).toUpperCase() + agent.id.slice(1)) as keyof typeof strings] || agent.name}</h3>
                         <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
                           <span className="flex items-center gap-1">
-                            <Activity className="w-2.5 h-2.5" /> {(agent.confidence * 100).toFixed(0)}% Confidence
+                            <Activity className="w-2.5 h-2.5" /> {(agent.confidence * 100).toFixed(0)}% {strings.agentConfidence}
                           </span>
                         </div>
                       </div>
@@ -93,7 +95,7 @@ export function AgentCommandCenter() {
                     </div>
                     
                     <p className="text-[11px] leading-relaxed text-muted-foreground bg-slate-100/50 p-2 rounded-lg border border-slate-200">
-                      {agent.latestFinding}
+                      {strings[('agentFinding' + agent.id.charAt(0).toUpperCase() + agent.id.slice(1)) as keyof typeof strings] || agent.latestFinding}
                     </p>
 
                     {agent.status === 'alert' && (
@@ -102,7 +104,7 @@ export function AgentCommandCenter() {
                           <AlertCircle className="w-3 h-3" />
                         </div>
                         <p className="text-[10px] font-bold text-amber-500 uppercase tracking-tight">
-                          ACTION: {agent.recommendedAction}
+                          {strings.agentAction}: {strings[('agentRec' + agent.id.charAt(0).toUpperCase() + agent.id.slice(1)) as keyof typeof strings] || agent.recommendedAction}
                         </p>
                       </div>
                     )}
@@ -116,7 +118,7 @@ export function AgentCommandCenter() {
 
       {/* Simulation Feed */}
       <div className="space-y-3">
-        <h3 className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest px-1">System Logs</h3>
+        <h3 className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest px-1">{strings.agentSystemLogs}</h3>
         <div className="bg-slate-100/80 rounded-2xl p-4 border border-slate-200 font-mono text-[9px] space-y-1 h-32 overflow-hidden">
           <p className="text-emerald-500">[OK] SPENDING_SENSE: Categorized GrabFood - RM25.50</p>
           <p className="text-blue-500">[INFO] CASHFLOW_PREDICT: Updating broke_date: 2026-05-18</p>

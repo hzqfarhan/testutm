@@ -68,6 +68,65 @@ type Translations = {
     logoutCancel: string
     logoutConfirm: string
     logoutSecuring: string
+
+    // Agents Page
+    agentHeader: string
+    agentSubheader: string
+    agentOrchStatus: string
+    agentOrchLog: string
+    agentConfidence: string
+    agentAction: string
+    agentSystemLogs: string
+
+    // Agent Names & Findings
+    agentNameOrch: string
+    agentNameSpend: string
+    agentNameCash: string
+    agentNameDebt: string
+    
+    agentFindingOrch: string
+    agentFindingSpend: string
+    agentFindingCash: string
+    agentFindingDebt: string
+
+    agentRecOrch: string
+    agentRecSpend: string
+    agentRecCash: string
+    agentRecDebt: string
+
+    // Savings Page
+    saveHeader: string
+    saveSubheader: string
+    saveTotalLabel: string
+    saveActiveGoals: string
+    savePocketEmerg: string
+    savePocketLaptop: string
+    savePocketRent: string
+    saveGoalMet: string
+    saveCreatePocket: string
+    saveSmartAuto: string
+    saveSmartDesc: string
+    saveAddFunds: string
+
+    // Reports Page
+    reportHeader: string
+    reportSubheader: string
+    reportBreakdown: string
+    reportMilestones: string
+    reportMileEmerg: string
+    reportMileEmergDesc: string
+    reportMileDebt: string
+    reportMileDebtDesc: string
+    reportProjBal: string
+    reportProjDesc: string
+
+    // Coach Page
+    coachHeader: string
+    coachSubheader: string
+    coachInputPlaceholder: string
+    coachChipLimit: string
+    coachChipSafe: string
+    coachChipSave: string
   }
 }
 
@@ -132,6 +191,65 @@ export const t: Translations = {
     logoutCancel: "Cancel",
     logoutConfirm: "Sign Out",
     logoutSecuring: "Securing...",
+
+    // Agents Page
+    agentHeader: "Agent Command",
+    agentSubheader: "Orchestrating 10 financial guardians",
+    agentOrchStatus: "ACTIVE",
+    agentOrchLog: '"Analyzing user behavior... all agents synchronized. Current priority: Cashflow protection."',
+    agentConfidence: "Confidence",
+    agentAction: "ACTION",
+    agentSystemLogs: "System Logs",
+
+    // Agent Names & Findings
+    agentNameOrch: "Orchestrator Agent",
+    agentNameSpend: "Spending Sense Agent",
+    agentNameCash: "Cashflow Prediction Agent",
+    agentNameDebt: "Debt Shield Agent",
+    
+    agentFindingOrch: "System nominal. Monitoring cashflow.",
+    agentFindingSpend: "Food spending is 15% above average.",
+    agentFindingCash: "Predicted broke date: 18 May",
+    agentFindingDebt: "No new debt detected.",
+
+    agentRecOrch: "No action needed",
+    agentRecSpend: "Limit GrabFood to RM15/day",
+    agentRecCash: "Activate Budget Guard",
+    agentRecDebt: "Continue monitoring",
+
+    // Savings Page
+    saveHeader: "Savings Pockets",
+    saveSubheader: "Automated goal tracking",
+    saveTotalLabel: "Total Saved",
+    saveActiveGoals: "Active Goals",
+    savePocketEmerg: "Emergency Fund",
+    savePocketLaptop: "Laptop Fund",
+    savePocketRent: "Rent Buffer",
+    saveGoalMet: "Goal Met",
+    saveCreatePocket: "Create New Pocket",
+    saveSmartAuto: "Smart Auto-Save",
+    saveSmartDesc: "Moving RM 2.00 daily to Emergency Fund",
+    saveAddFunds: "ADD FUNDS",
+
+    // Reports Page
+    reportHeader: "Reports & Insights",
+    reportSubheader: "Data-driven financial clarity",
+    reportBreakdown: "Spending Breakdown",
+    reportMilestones: "In-Progress Milestones",
+    reportMileEmerg: "Emergency Fund 50%",
+    reportMileEmergDesc: "You are RM165 away from your first major milestone.",
+    reportMileDebt: "Debt-Free Month",
+    reportMileDebtDesc: "Keep it up! 12 days without BNPL usage.",
+    reportProjBal: "Projected Month-End Balance",
+    reportProjDesc: "Based on current cashflow agents.",
+
+    // Coach Page
+    coachHeader: "Resilience Coach",
+    coachSubheader: "Ask me anything about your finances",
+    coachInputPlaceholder: "Ask about your spending...",
+    coachChipLimit: "How to limit impulse buys?",
+    coachChipSafe: "What is my safe daily spend?",
+    coachChipSave: "How to save for a laptop?",
   },
   ms: {
     navHome: "Utama",
@@ -193,5 +311,64 @@ export const t: Translations = {
     logoutCancel: "Batal",
     logoutConfirm: "Log Keluar",
     logoutSecuring: "Mengamankan...",
+
+    // Agents Page
+    agentHeader: "Pusat Arahan Ejen",
+    agentSubheader: "Mengurus 10 pengawal kewangan",
+    agentOrchStatus: "AKTIF",
+    agentOrchLog: '"Menganalisis tingkah laku pengguna... semua ejen disegerakkan. Keutamaan: Perlindungan aliran tunai."',
+    agentConfidence: "Keyakinan",
+    agentAction: "TINDAKAN",
+    agentSystemLogs: "Log Sistem",
+
+    // Agent Names & Findings
+    agentNameOrch: "Ejen Pengurus Utama",
+    agentNameSpend: "Ejen Analisis Belanja",
+    agentNameCash: "Ejen Ramalan Tunai",
+    agentNameDebt: "Ejen Pelindung Hutang",
+    
+    agentFindingOrch: "Sistem normal. Memantau aliran tunai.",
+    agentFindingSpend: "Perbelanjaan makanan 15% lebih dari biasa.",
+    agentFindingCash: "Tarikh pokai diramal: 18 Mei",
+    agentFindingDebt: "Tiada hutang baharu dikesan.",
+
+    agentRecOrch: "Tiada tindakan diperlukan",
+    agentRecSpend: "Hadkan GrabFood kepada RM15/hari",
+    agentRecCash: "Aktifkan Pengawal Bajet",
+    agentRecDebt: "Teruskan pemantauan",
+
+    // Savings Page
+    saveHeader: "Poket Simpanan",
+    saveSubheader: "Penjejakan matlamat automatik",
+    saveTotalLabel: "Jumlah Disimpan",
+    saveActiveGoals: "Matlamat Aktif",
+    savePocketEmerg: "Dana Kecemasan",
+    savePocketLaptop: "Dana Komputer Riba",
+    savePocketRent: "Penampan Sewa",
+    saveGoalMet: "Matlamat Tercapai",
+    saveCreatePocket: "Cipta Poket Baharu",
+    saveSmartAuto: "Simpanan Automatik Pintar",
+    saveSmartDesc: "Memindahkan RM 2.00 setiap hari ke Dana Kecemasan",
+    saveAddFunds: "TAMBAH DANA",
+
+    // Reports Page
+    reportHeader: "Laporan & Maklumat",
+    reportSubheader: "Kejelasan kewangan dipacu data",
+    reportBreakdown: "Pecahan Perbelanjaan",
+    reportMilestones: "Pencapaian Sedang Berjalan",
+    reportMileEmerg: "Dana Kecemasan 50%",
+    reportMileEmergDesc: "Anda kekurangan RM165 lagi untuk pencapaian pertama.",
+    reportMileDebt: "Bulan Bebas Hutang",
+    reportMileDebtDesc: "Teruskan! 12 hari tanpa penggunaan BNPL.",
+    reportProjBal: "Unjuran Baki Akhir Bulan",
+    reportProjDesc: "Berdasarkan ejen aliran tunai semasa.",
+
+    // Coach Page
+    coachHeader: "Jurulatih Ketahanan",
+    coachSubheader: "Tanya apa sahaja tentang kewangan anda",
+    coachInputPlaceholder: "Tanya tentang perbelanjaan anda...",
+    coachChipLimit: "Cara elak beli ikut nafsu?",
+    coachChipSafe: "Berapa bajet harian saya?",
+    coachChipSave: "Cara simpan untuk komputer riba?",
   }
 }
