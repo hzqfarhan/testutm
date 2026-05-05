@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation"
 export function CoachFAB() {
   const pathname = usePathname()
 
-  if (pathname === '/' || pathname === '/coach') return null
+  if (pathname === '/' || pathname === '/coach' || pathname === '/scan') return null
 
   return (
     <div className="fixed bottom-24 right-4 z-50">
