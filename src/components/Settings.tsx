@@ -88,7 +88,7 @@ export function Settings() {
   )
 }
 
-function Button({ children, className, variant, ...props }: any) {
+function Button({ children, className, variant, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: string }) {
   return (
     <button className={className} {...props}>
       {children}

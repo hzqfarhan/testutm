@@ -78,7 +78,7 @@ export function Reports() {
               </div>
               <div className="flex-1">
                 <p className="text-xs font-bold">Streak: 5 Days Safe</p>
-                <p className="text-[10px] text-muted-foreground">You've stayed within your safe daily limit for 5 days!</p>
+                <p className="text-[10px] text-muted-foreground">You&apos;ve stayed within your safe daily limit for 5 days!</p>
               </div>
               <Badge className="bg-emerald-500/20 text-emerald-500 border-emerald-500/30">+12 Pts</Badge>
             </div>

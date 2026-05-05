@@ -15,24 +15,18 @@ export function Transfer() {
   const { user, addTransaction, safeDailySpend } = useStore()
   const [amount, setAmount] = useState("")
   const [isProcessing, setIsProcessing] = useState(false)
-  const [prediction, setPrediction] = useState<string | null>(null)
 
-  useEffect(() => {
-    const numAmount = parseFloat(amount)
-    if (!isNaN(numAmount) && numAmount > 0) {
-      if (numAmount > safeDailySpend * 3) {
-        setPrediction(`Sending RM${numAmount} will move your Broke Date 4 days earlier. Are you sure this is necessary?`)
-      } else if (numAmount > safeDailySpend) {
-        setPrediction(`This exceeds your safe daily limit of RM${safeDailySpend.toFixed(2)}.`)
-      } else {
-        setPrediction(null)
-      }
-    } else {
-      setPrediction(null)
-    }
-  }, [amount, safeDailySpend])
+  const numAmount = parseFloat(amount)
+  const prediction = !isNaN(numAmount) && numAmount > 0
+    ? numAmount > safeDailySpend * 3
+      ? `Sending RM${numAmount} will move your Broke Date 4 days earlier. Are you sure this is necessary?`
+      : numAmount > safeDailySpend
+        ? `This exceeds your safe daily limit of RM${safeDailySpend.toFixed(2)}.`
+        : null
+    : null
 
   const handleTransfer = () => {
+
     if (!amount || isNaN(parseFloat(amount))) return
     
     setIsProcessing(true)
