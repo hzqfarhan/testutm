@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
-import { TrendingUp, AlertTriangle, ShieldCheck, Wallet, Calendar, Settings as SettingsIcon, List, QrCode, Send } from "lucide-react"
+import { TrendingUp, AlertTriangle, ShieldCheck, Wallet, Calendar, Settings as SettingsIcon, List, QrCode, Send, History } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
 import { BudgetGuardModal } from "./BudgetGuardModal"
@@ -76,7 +76,7 @@ export function Dashboard() {
       {/* Quick Actions */}
       <div className="grid grid-cols-4 gap-2">
         {[
-          { icon: QrCode, label: "Scan", href: "/scan", color: "text-blue-500", bg: "bg-blue-500/10" },
+          { icon: History, label: "Transaction", href: "/transactions", color: "text-indigo-500", bg: "bg-indigo-500/10" },
           { icon: Send, label: "Transfer", href: "/transfer", color: "text-emerald-500", bg: "bg-emerald-500/10" },
           { icon: Wallet, label: "Bills", href: "#", color: "text-amber-500", bg: "bg-amber-500/10" },
           { icon: ShieldCheck, label: "Shield", href: "/debt-shield", color: "text-primary", bg: "bg-primary/10" },

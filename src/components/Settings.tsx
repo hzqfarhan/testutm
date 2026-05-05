@@ -4,11 +4,24 @@ import { useStore } from "@/store/useStore"
 import { Card, CardContent } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Switch } from "@/components/ui/switch"
-import { User, Bell, Shield, Wallet, CircleHelp, LogOut, ChevronRight } from "lucide-react"
-import { motion } from "framer-motion"
+import { User, Bell, Shield, Wallet, CircleHelp, LogOut, ChevronRight, AlertTriangle } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
 
 export function Settings() {
   const { user } = useStore()
+  const router = useRouter()
+  const [showLogout, setShowLogout] = useState(false)
+  const [isLoggingOut, setIsLoggingOut] = useState(false)
+
+  const handleLogout = () => {
+    setIsLoggingOut(true)
+    setTimeout(() => {
+      // Simulation of secure logout clearing state
+      router.push("/")
+    }, 1500)
+  }
 
   return (
     <div className="p-4 space-y-6 pb-24 max-w-lg mx-auto">
@@ -75,15 +88,77 @@ export function Settings() {
           </Card>
         </section>
 
-        <Button variant="ghost" className="w-full text-rose-500 hover:text-rose-600 hover:bg-rose-500/10 gap-2 font-bold text-xs py-6 rounded-2xl border border-rose-500/20 mt-4">
-          <LogOut className="w-4 h-4" /> Sign Out
-        </Button>
+        <section className="space-y-2 mt-8">
+          <h3 className="text-[10px] uppercase font-bold text-rose-500/70 px-2 tracking-widest">Secure Session</h3>
+          <Card className="border-rose-500/20 bg-rose-500/5 shadow-sm">
+            <CardContent className="p-2">
+              <Button 
+                onClick={() => setShowLogout(true)}
+                variant="ghost" 
+                className="w-full text-rose-600 hover:text-rose-700 hover:bg-rose-500/10 gap-2 font-bold text-xs py-4 rounded-xl transition-all active:scale-95"
+              >
+                <LogOut className="w-4 h-4 transition-transform group-hover:-translate-x-1" /> Sign Out securely
+              </Button>
+            </CardContent>
+          </Card>
+        </section>
       </div>
 
-      <div className="text-center pt-4">
-        <p className="text-[10px] text-muted-foreground">Resilience Agent System v1.0.4-alpha</p>
-        <p className="text-[10px] text-muted-foreground">Made with 🧬 in Malaysia</p>
+      <div className="text-center pt-8">
+        <p className="text-[10px] text-muted-foreground font-medium">Resilience Agent System v1.0.4-alpha</p>
+        <p className="text-[10px] text-muted-foreground mt-1">Made with 🧬 in Malaysia</p>
       </div>
+
+      {/* Logout Confirmation Modal */}
+      <AnimatePresence>
+        {showLogout && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => !isLoggingOut && setShowLogout(false)}
+              className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="fixed left-4 right-4 top-1/2 -translate-y-1/2 z-50"
+            >
+              <Card className="border-rose-500/20 shadow-2xl max-w-sm mx-auto overflow-hidden">
+                <CardContent className="p-6 text-center space-y-6 bg-white/95 backdrop-blur">
+                  <div className="w-16 h-16 bg-rose-100 text-rose-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <LogOut className="w-8 h-8 ml-1" />
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="font-bold text-lg text-slate-900">Ready to go?</h3>
+                    <p className="text-xs text-slate-500 leading-relaxed px-4">
+                      Your financial data is securely saved. You will need to re-authenticate to access your dashboard.
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3 pt-2">
+                    <Button 
+                      disabled={isLoggingOut}
+                      onClick={() => setShowLogout(false)}
+                      className="py-6 rounded-2xl bg-slate-100 text-slate-600 font-bold hover:bg-slate-200 text-xs"
+                    >
+                      Cancel
+                    </Button>
+                    <Button 
+                      disabled={isLoggingOut}
+                      onClick={handleLogout}
+                      className="py-6 rounded-2xl bg-rose-500 text-white font-bold hover:bg-rose-600 text-xs shadow-lg shadow-rose-500/20"
+                    >
+                      {isLoggingOut ? "Securing..." : "Sign Out"}
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
