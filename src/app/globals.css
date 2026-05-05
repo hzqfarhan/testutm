@@ -49,25 +49,25 @@
 }
 
 :root {
-  --background: #F8FAFC;
-  --foreground: #0F172A;
-  --card: #FFFFFF;
-  --card-foreground: #0F172A;
-  --popover: #FFFFFF;
-  --popover-foreground: #0F172A;
-  --primary: #1E3A8A;
+  --background: #030014; /* Deep space violet-black */
+  --foreground: #FFFFFF;
+  --card: rgba(255, 255, 255, 0.03);
+  --card-foreground: #FFFFFF;
+  --popover: #030014;
+  --popover-foreground: #FFFFFF;
+  --primary: #8B5CF6; /* Neon Purple */
   --primary-foreground: #FFFFFF;
-  --secondary: #3B82F6;
+  --secondary: #3B82F6; /* Electric Blue */
   --secondary-foreground: #FFFFFF;
-  --muted: #F1F5F9;
-  --muted-foreground: #64748B;
-  --accent: #14B8A6;
+  --muted: rgba(255, 255, 255, 0.05);
+  --muted-foreground: #9CA3AF;
+  --accent: rgba(139, 92, 246, 0.2);
   --accent-foreground: #FFFFFF;
   --destructive: #EF4444;
-  --border: #E2E8F0;
-  --input: #E2E8F0;
-  --ring: #1E3A8A;
-  --radius: 1rem;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.08);
+  --ring: #8B5CF6;
+  --radius: 1.5rem;
 }
 
 @layer base {
@@ -82,16 +82,23 @@
 
 @layer utilities {
   .glass {
-    @apply bg-white/70 backdrop-blur-xl border border-slate-200/50;
+    @apply bg-white/[0.02] backdrop-blur-3xl border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)];
   }
   .glass-card {
-    @apply bg-white/80 backdrop-blur-md border border-slate-200/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)];
+    @apply bg-white/[0.04] backdrop-blur-2xl border border-white/[0.05] shadow-[0_8px_32px_rgba(139,92,246,0.05)];
+  }
+  .glass-card-premium {
+    @apply bg-gradient-to-br from-white/[0.07] to-white/[0.01] backdrop-blur-3xl border border-white/[0.1] shadow-[0_8px_32px_rgba(139,92,246,0.1)];
   }
   .text-glow {
-    text-shadow: 0 0 10px rgba(30, 58, 138, 0.2);
+    text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
   }
   .neon-border {
-    box-shadow: 0 0 15px rgba(30, 58, 138, 0.15);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.2), inset 0 0 10px rgba(139, 92, 246, 0.1);
+  }
+  .bg-liquid-gradient {
+    background: radial-gradient(circle at 0% 0%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
   }
 }
 
@@ -103,5 +110,5 @@
   @apply bg-transparent;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-300 rounded-full hover:bg-slate-400 transition-colors;
+  @apply bg-white/10 rounded-full hover:bg-white/20 transition-colors;
 }

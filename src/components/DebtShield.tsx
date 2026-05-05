@@ -6,7 +6,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
 import { Shield, AlertTriangle, CheckCircle2, TrendingDown, Info } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
@@ -40,44 +39,45 @@ export function DebtShield() {
   }
 
   return (
-    <div className="p-4 space-y-6 pb-24 max-w-lg mx-auto">
-      <header className="space-y-1">
+    <div className="p-4 space-y-6 pb-28 max-w-lg mx-auto">
+      <header className="space-y-1 mt-2">
         <div className="flex items-center gap-2">
-          <Shield className="w-5 h-5 text-emerald-500 text-glow" />
-          <h1 className="text-2xl font-bold">Debt Shield</h1>
+          <Shield className="w-5 h-5 text-emerald-400 text-glow drop-shadow-[0_0_10px_rgba(52,211,153,0.8)]" />
+          <h1 className="text-2xl font-black">Debt Shield</h1>
         </div>
-        <p className="text-muted-foreground text-sm">Predict impact before you commit</p>
+        <p className="text-white/60 text-sm">Predict impact before you commit</p>
       </header>
 
       {/* Simulator Input */}
-      <Card className="glass-card">
-        <CardHeader className="p-4">
-          <CardTitle className="text-sm font-medium flex items-center gap-2">
+      <Card className="glass-card overflow-hidden relative">
+        <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-[50px] rounded-full mix-blend-screen -z-10" />
+        <CardHeader className="p-5">
+          <CardTitle className="text-sm font-semibold flex items-center gap-2 text-white/90">
             <Info className="w-4 h-4 text-primary" /> Affordability Simulator
           </CardTitle>
         </CardHeader>
-        <CardContent className="p-4 pt-0 space-y-4">
+        <CardContent className="p-5 pt-0 space-y-4">
           <div className="space-y-2">
-            <label className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">Item Name</label>
+            <label className="text-[10px] uppercase font-bold text-white/50 tracking-wider">Item Name</label>
             <Input 
               placeholder="e.g. New Shoes" 
               value={item} 
               onChange={(e) => setItem(e.target.value)}
-              className="bg-slate-100/50 border-slate-200"
+              className="bg-white/5 border-white/10 text-white placeholder:text-white/30 h-11 focus:border-primary/50 focus:ring-primary backdrop-blur-sm"
             />
           </div>
           <div className="space-y-2">
-            <label className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">Price (RM)</label>
+            <label className="text-[10px] uppercase font-bold text-white/50 tracking-wider">Price (RM)</label>
             <Input 
               type="number" 
               placeholder="0.00" 
               value={price} 
               onChange={(e) => setPrice(e.target.value)}
-              className="bg-slate-100/50 border-slate-200"
+              className="bg-white/5 border-white/10 text-white placeholder:text-white/30 h-11 focus:border-primary/50 focus:ring-primary backdrop-blur-sm"
             />
           </div>
           <Button 
-            className="w-full bg-primary hover:bg-primary/90 text-slate-900 font-bold"
+            className="w-full bg-white hover:bg-white/90 text-black font-black h-12 shadow-[0_0_20px_rgba(255,255,255,0.2)] rounded-full transition-all"
             onClick={simulateAffordability}
             disabled={!price || isSimulating}
           >
@@ -86,7 +86,7 @@ export function DebtShield() {
                 animate={{ rotate: 360 }}
                 transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
               >
-                <Shield className="w-4 h-4" />
+                <Shield className="w-4 h-4 text-primary" />
               </motion.div>
             ) : "Simulate Impact"}
           </Button>
@@ -103,34 +103,34 @@ export function DebtShield() {
           >
             <Card className={cn(
               "glass-card overflow-hidden",
-              result.recommendation === "Avoid" ? "border-rose-500/50" : 
-              result.recommendation === "Caution" ? "border-amber-500/50" : "border-emerald-500/50"
+              result.recommendation === "Avoid" ? "border-rose-500/50 shadow-[0_0_30px_rgba(244,63,94,0.1)]" : 
+              result.recommendation === "Caution" ? "border-amber-500/50 shadow-[0_0_30px_rgba(245,158,11,0.1)]" : "border-emerald-500/50 shadow-[0_0_30px_rgba(16,185,129,0.1)]"
             )}>
               <div className={cn(
-                "p-3 text-center text-xs font-bold uppercase tracking-widest",
-                result.recommendation === "Avoid" ? "bg-rose-500 text-slate-900" : 
-                result.recommendation === "Caution" ? "bg-amber-500 text-black" : "bg-emerald-500 text-slate-900"
+                "p-3 text-center text-xs font-black uppercase tracking-widest backdrop-blur-md border-b border-white/10",
+                result.recommendation === "Avoid" ? "bg-rose-500/20 text-rose-400" : 
+                result.recommendation === "Caution" ? "bg-amber-500/20 text-amber-400" : "bg-emerald-500/20 text-emerald-400"
               )}>
                 Recommendation: {result.recommendation}
               </div>
               <CardContent className="p-6 space-y-6">
                 <div className="flex justify-around text-center">
                   <div className="space-y-1">
-                    <p className="text-[10px] text-muted-foreground uppercase font-bold">New Daily Spend</p>
-                    <p className="text-xl font-bold">RM {result.newDailySpend}</p>
-                    <div className="flex items-center gap-1 text-[10px] text-rose-500 justify-center">
-                      <TrendingDown className="w-2.5 h-2.5" /> RM {result.impact}/day
+                    <p className="text-[10px] text-white/50 uppercase font-bold tracking-wider">New Daily Spend</p>
+                    <p className="text-2xl font-black text-white/90">RM {result.newDailySpend}</p>
+                    <div className="flex items-center gap-1 text-[10px] text-rose-400 justify-center drop-shadow-[0_0_5px_rgba(244,63,94,0.5)]">
+                      <TrendingDown className="w-3 h-3" /> RM {result.impact}/day
                     </div>
                   </div>
                   <div className="space-y-1">
-                    <p className="text-[10px] text-muted-foreground uppercase font-bold">Debt Risk Score</p>
-                    <p className="text-xl font-bold">+{result.debtRiskImpact}</p>
-                    <p className="text-[10px] text-muted-foreground">pts increase</p>
+                    <p className="text-[10px] text-white/50 uppercase font-bold tracking-wider">Debt Risk Score</p>
+                    <p className="text-2xl font-black text-white/90">+{result.debtRiskImpact}</p>
+                    <p className="text-[10px] text-white/40 font-medium">pts increase</p>
                   </div>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-slate-100/50 border border-slate-200 space-y-2">
-                  <p className="text-[11px] text-muted-foreground italic">
+                <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2 backdrop-blur-sm">
+                  <p className="text-[11px] text-white/70 leading-relaxed italic">
                     {result.recommendation === "Avoid" ? 
                       "This purchase will drop your daily budget below RM5, which is dangerous for survival. The Debt Shield agent strongly advises against this." :
                       result.recommendation === "Caution" ?
@@ -147,7 +147,7 @@ export function DebtShield() {
 
       {/* Tracker */}
       <div className="space-y-3">
-        <h3 className="text-sm font-semibold px-1">Active Commitments</h3>
+        <h3 className="text-sm font-semibold px-2 text-white/80">Active Commitments</h3>
         <div className="space-y-2">
           {[
             { name: "Shopee PayLater", amount: 45.00, icon: "🛍️", risk: "Low" },
@@ -156,18 +156,18 @@ export function DebtShield() {
           ].map((item) => (
             <Card key={item.name} className="glass-card">
               <CardContent className="p-4 flex justify-between items-center">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shadow-inner">
                     {item.icon}
                   </div>
                   <div>
-                    <p className="text-xs font-medium">{item.name}</p>
-                    <p className="text-[10px] text-muted-foreground">Monthly: RM {item.amount.toFixed(2)}</p>
+                    <p className="text-sm font-bold text-white/90">{item.name}</p>
+                    <p className="text-[10px] text-white/50 font-medium">Monthly: RM {item.amount.toFixed(2)}</p>
                   </div>
                 </div>
                 <Badge variant="outline" className={cn(
-                  "text-[9px] px-1.5 py-0",
-                  item.risk === "Medium" ? "border-amber-500/50 text-amber-500" : "border-emerald-500/50 text-emerald-500"
+                  "text-[9px] px-2 py-0.5 border backdrop-blur-sm",
+                  item.risk === "Medium" ? "border-amber-500/30 text-amber-400 bg-amber-500/10 shadow-[0_0_10px_rgba(245,158,11,0.1)]" : "border-emerald-500/30 text-emerald-400 bg-emerald-500/10 shadow-[0_0_10px_rgba(16,185,129,0.1)]"
                 )}>
                   {item.risk} RISK
                 </Badge>

@@ -6,9 +6,10 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { ArrowLeft, Send, BrainCircuit, User } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import { cn } from "@/lib/utils"
 
 export function Transfer() {
   const router = useRouter()
@@ -46,44 +47,44 @@ export function Transfer() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col max-w-lg mx-auto">
-      <header className="bg-white px-4 pt-safe pb-4 sticky top-0 z-50 border-b border-slate-200">
+    <div className="min-h-screen bg-transparent flex flex-col max-w-lg mx-auto">
+      <header className="px-4 pt-safe pb-4 sticky top-0 z-50 backdrop-blur-md border-b border-white/5">
         <div className="flex items-center gap-3 pt-4">
           <Link href="/dashboard">
-            <Button variant="ghost" size="icon" className="text-slate-600 rounded-full hover:bg-slate-100">
+            <Button variant="ghost" size="icon" className="text-white/70 rounded-full hover:bg-white/10 hover:text-white">
               <ArrowLeft className="w-5 h-5" />
             </Button>
           </Link>
-          <h1 className="text-lg font-bold text-slate-900">Transfer</h1>
+          <h1 className="text-lg font-bold text-white">Transfer</h1>
         </div>
       </header>
 
-      <main className="flex-1 p-4 space-y-6">
+      <main className="flex-1 p-4 space-y-6 pb-28">
         
         {/* Recipient Mock */}
-        <Card className="bg-white border-slate-200 shadow-sm rounded-2xl">
+        <Card className="glass-card">
           <CardContent className="p-4 flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 shrink-0">
+            <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 shrink-0 shadow-inner">
               <User className="w-6 h-6" />
             </div>
             <div>
-              <p className="font-bold text-slate-900">Ahmad Ali</p>
-              <p className="text-xs text-slate-500">Maybank • 1622 **** 8899</p>
+              <p className="font-bold text-white/90">Ahmad Ali</p>
+              <p className="text-xs text-white/50">Maybank • 1622 **** 8899</p>
             </div>
           </CardContent>
         </Card>
 
         {/* Amount Input */}
         <div className="space-y-2">
-          <p className="text-xs font-bold text-slate-500 uppercase tracking-wider px-1">Amount</p>
+          <p className="text-[10px] font-bold text-white/50 uppercase tracking-wider px-2">Amount</p>
           <div className="relative">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-2xl font-bold text-slate-400">RM</span>
+            <span className="absolute left-6 top-1/2 -translate-y-1/2 text-2xl font-bold text-white/40">RM</span>
             <Input 
               type="number" 
               placeholder="0.00" 
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              className="pl-14 h-20 text-4xl font-black text-slate-900 bg-white border-slate-200 rounded-2xl placeholder:text-slate-200 focus-visible:ring-primary focus-visible:border-primary transition-all"
+              className="pl-16 h-24 text-5xl font-black text-white bg-white/5 border border-white/10 rounded-[2rem] placeholder:text-white/20 focus-visible:ring-primary focus-visible:border-primary/50 transition-all shadow-[0_4px_20px_rgba(0,0,0,0.2)] backdrop-blur-md"
             />
           </div>
         </div>
@@ -97,11 +98,11 @@ export function Transfer() {
               exit={{ opacity: 0, height: 0, scale: 0.95 }}
               className="overflow-hidden"
             >
-              <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex gap-3">
-                <BrainCircuit className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+              <div className="p-4 rounded-3xl bg-amber-500/10 border border-amber-500/30 flex gap-3 backdrop-blur-md shadow-[0_0_20px_rgba(245,158,11,0.1)]">
+                <BrainCircuit className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
                 <div className="space-y-1">
-                  <p className="text-xs font-bold text-amber-600">Cashflow Prediction</p>
-                  <p className="text-xs text-amber-800/80 leading-relaxed">{prediction}</p>
+                  <p className="text-xs font-bold text-amber-400">Cashflow Prediction</p>
+                  <p className="text-xs text-white/70 leading-relaxed">{prediction}</p>
                 </div>
               </div>
             </motion.div>
@@ -110,21 +111,21 @@ export function Transfer() {
 
         {/* Ref Input */}
         <div className="space-y-2">
-          <p className="text-xs font-bold text-slate-500 uppercase tracking-wider px-1">Reference</p>
+          <p className="text-[10px] font-bold text-white/50 uppercase tracking-wider px-2">Reference</p>
           <Input 
             placeholder="e.g. Dinner yesterday" 
-            className="h-14 bg-white border-slate-200 rounded-2xl"
+            className="h-14 bg-white/5 border border-white/10 rounded-2xl text-white placeholder:text-white/30 focus-visible:ring-primary focus-visible:border-primary/50 backdrop-blur-md px-4"
           />
         </div>
 
       </main>
 
       {/* Footer Action */}
-      <div className="p-4 bg-white border-t border-slate-200 pb-safe">
+      <div className="fixed bottom-0 left-0 right-0 p-4 pb-safe-offset-4 bg-background/80 backdrop-blur-xl border-t border-white/5 z-40 max-w-lg mx-auto">
         <Button 
           onClick={handleTransfer}
           disabled={!amount || isProcessing}
-          className="w-full h-14 bg-primary hover:bg-primary/90 text-white font-bold rounded-2xl shadow-xl flex gap-2"
+          className="w-full h-14 bg-white hover:bg-white/90 text-black font-black rounded-full shadow-[0_0_20px_rgba(255,255,255,0.2)] flex gap-2 transition-all"
         >
           {isProcessing ? "Processing..." : "Transfer Now"} <Send className="w-4 h-4 ml-2" />
         </Button>

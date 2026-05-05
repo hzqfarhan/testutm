@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: "Secure your financial future with AI-powered resilience agents.",
   appleWebApp: {
     title: "Resilience",
-    statusBarStyle: "default",
+    statusBarStyle: "black-translucent",
     capable: true,
   },
   formatDetection: {
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#1E3A8A",
+  themeColor: "#030014",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -36,7 +36,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-background text-foreground min-h-screen selection:bg-primary/30`}>
+      <body className={`${inter.className} bg-background text-foreground min-h-screen selection:bg-primary/30 antialiased`}>
+        <div className="fixed inset-0 bg-liquid-gradient -z-50 pointer-events-none" />
         <main className="min-h-screen">
           <SplashScreen />
           {children}
@@ -44,7 +45,6 @@ export default function RootLayout({
         <CoachFAB />
         <Navbar />
       </body>
-
     </html>
   );
 }

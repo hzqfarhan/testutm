@@ -27,8 +27,8 @@ export function Navbar() {
   ]
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-t border-slate-200 pb-safe">
-      <div className="flex justify-around items-center h-16 max-w-lg mx-auto">
+    <nav className="fixed bottom-6 left-4 right-4 z-50 glass rounded-full px-2 shadow-[0_10px_40px_rgba(0,0,0,0.8)] pb-safe-offset-0">
+      <div className="flex justify-around items-center h-16 max-w-lg mx-auto relative">
         {/* Left Items */}
         <div className="flex justify-around items-center w-2/5">
           {leftNavItems.map((item) => {
@@ -39,11 +39,11 @@ export function Navbar() {
                 href={item.href}
                 className={cn(
                   "flex flex-col items-center justify-center space-y-1 transition-all duration-300",
-                  isActive ? "text-primary scale-110" : "text-muted-foreground hover:text-foreground"
+                  isActive ? "text-primary scale-110" : "text-white/40 hover:text-white/80"
                 )}
               >
-                <item.icon className={cn("w-5 h-5", isActive && "text-glow")} />
-                <span className="text-[10px] font-medium">{item.label}</span>
+                <item.icon className={cn("w-5 h-5", isActive && "text-glow drop-shadow-[0_0_10px_rgba(139,92,246,0.8)]")} />
+                <span className="text-[9px] font-bold tracking-wide">{item.label}</span>
                 {isActive && (
                   <div className="absolute -bottom-1 w-1 h-1 bg-primary rounded-full neon-border" />
                 )}
@@ -53,10 +53,9 @@ export function Navbar() {
         </div>
 
         {/* Center QR Button */}
-        <div className="w-1/5 flex justify-center -mt-8">
-          <Link href="/scan" className="w-14 h-14 rounded-full bg-primary flex flex-col items-center justify-center text-white shadow-lg shadow-primary/30 border-4 border-background hover:scale-105 transition-transform">
+        <div className="w-1/5 flex justify-center relative -top-6">
+          <Link href="/scan" className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-secondary flex flex-col items-center justify-center text-white shadow-[0_8px_25px_rgba(139,92,246,0.5)] border-4 border-[#030014] hover:scale-105 transition-transform z-10">
             <QrCode className="w-6 h-6" />
-            <span className="text-[8px] font-bold mt-0.5">{strings.navPay}</span>
           </Link>
         </div>
 
@@ -70,11 +69,11 @@ export function Navbar() {
                 href={item.href}
                 className={cn(
                   "flex flex-col items-center justify-center space-y-1 transition-all duration-300",
-                  isActive ? "text-primary scale-110" : "text-muted-foreground hover:text-foreground"
+                  isActive ? "text-primary scale-110" : "text-white/40 hover:text-white/80"
                 )}
               >
-                <item.icon className={cn("w-5 h-5", isActive && "text-glow")} />
-                <span className="text-[10px] font-medium">{item.label}</span>
+                <item.icon className={cn("w-5 h-5", isActive && "text-glow drop-shadow-[0_0_10px_rgba(139,92,246,0.8)]")} />
+                <span className="text-[9px] font-bold tracking-wide">{item.label}</span>
                 {isActive && (
                   <div className="absolute -bottom-1 w-1 h-1 bg-primary rounded-full neon-border" />
                 )}
