@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { MessageSquare, Send, Sparkles, User } from "lucide-react"
 import { useState } from "react"
+import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { t } from "@/lib/translations"
 
