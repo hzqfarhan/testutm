@@ -10,7 +10,6 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Resilience Agent | AI Financial Companion",
   description: "Secure your financial future with AI-powered resilience agents.",
-  manifest: "/manifest.json",
   appleWebApp: {
     title: "Resilience",
     statusBarStyle: "default",
@@ -22,7 +21,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0c",
+  themeColor: "#1E3A8A",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,

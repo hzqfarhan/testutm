@@ -1,7 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: 'export',
+  basePath: '/utmkathon',
+  assetPrefix: '/utmkathon/',
+  images: {
+    unoptimized: true,
+  },
 };
+
 
 export default nextConfig;
