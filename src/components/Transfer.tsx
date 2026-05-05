@@ -39,15 +39,16 @@ export function Transfer() {
     setTimeout(() => {
       addTransaction({
         id: Date.now().toString(),
-        merchant: "Ahmad Ali (Maybank)",
+        title: "Ahmad Ali (Maybank)",
         amount: parseFloat(amount),
         date: new Date().toISOString(),
         category: "Transfer",
-        isEssential: true,
-        aiConfidence: 80
+        type: 'expense',
+        confidence: 0.80
       })
       router.push("/dashboard")
     }, 1500)
+
   }
 
   return (

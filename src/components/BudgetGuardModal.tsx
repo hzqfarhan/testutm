@@ -1,7 +1,7 @@
 "use client"
 
 import { useStore } from "@/store/useStore"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/card"
+
 import { Button } from "@/components/ui/button"
 import { Shield, AlertTriangle, CheckCircle2 } from "lucide-react"
 import { motion } from "framer-motion"

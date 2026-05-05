@@ -31,12 +31,12 @@ export function Scanner() {
     setTimeout(() => {
       addTransaction({
         id: Date.now().toString(),
-        merchant: scannedItem!.merchant,
+        title: scannedItem!.merchant,
         amount: scannedItem!.amount,
         date: new Date().toISOString(),
         category: scannedItem!.category,
-        isEssential: false,
-        aiConfidence: 95
+        type: 'expense',
+        confidence: 0.95
       })
       router.push("/dashboard")
     }, 1500)
