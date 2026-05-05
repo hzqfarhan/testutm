@@ -95,7 +95,7 @@ export function Settings() {
               <Button 
                 onClick={() => setShowLogout(true)}
                 variant="ghost" 
-                className="w-full text-rose-600 hover:text-rose-700 hover:bg-rose-500/10 gap-2 font-bold text-xs py-4 rounded-xl transition-all active:scale-95"
+                className="w-full flex items-center justify-center text-rose-600 hover:text-rose-700 hover:bg-rose-500/10 gap-2 font-bold text-xs py-4 rounded-xl transition-all active:scale-95"
               >
                 <LogOut className="w-4 h-4 transition-transform group-hover:-translate-x-1" /> Sign Out securely
               </Button>
@@ -165,7 +165,7 @@ export function Settings() {
 
 function Button({ children, className, variant, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: string }) {
   return (
-    <button className={className} {...props}>
+    <button className={`flex items-center justify-center ${className}`} {...props}>
       {children}
     </button>
   )
