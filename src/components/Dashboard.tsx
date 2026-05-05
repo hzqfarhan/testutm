@@ -8,21 +8,22 @@ import { motion } from "framer-motion"
 import { TrendingUp, AlertTriangle, ShieldCheck, Wallet, Calendar, Settings as SettingsIcon, QrCode, Send, History } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
-import { BudgetGuardModal } from "./BudgetGuardModal"
 import { ResilienceModal } from "./ResilienceModal"
 import Link from "next/link"
+import { t } from "@/lib/translations"
 
 export function Dashboard() {
-  const { user, resilienceScore, safeDailySpend, cashflowRisk, debtRiskScore } = useStore()
+  const { user, resilienceScore, safeDailySpend, cashflowRisk, debtRiskScore, language } = useStore()
   const [showGuardModal, setShowGuardModal] = useState(false)
   const [showResilienceModal, setShowResilienceModal] = useState(false)
+  const strings = t[language]
 
   return (
     <div className="p-4 space-y-6 pb-24 max-w-lg mx-auto">
       <header className="flex justify-between items-center">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Hi, {user.name}</h1>
-          <p className="text-muted-foreground text-sm">Status: <span className="text-primary font-medium">{resilienceScore > 70 ? 'Strong' : 'Watch'}</span></p>
+          <h1 className="text-2xl font-bold tracking-tight">{strings.dashGreeting}, {user.name}</h1>
+          <p className="text-muted-foreground text-sm">{strings.dashStatus}: <span className="text-primary font-medium">{resilienceScore > 70 ? strings.dashStrong : strings.dashWatch}</span></p>
         </div>
         <div className="flex items-center gap-3">
 
@@ -49,12 +50,12 @@ export function Dashboard() {
           <Card className="glass-card">
             <CardHeader className="p-4 pb-0">
               <CardTitle className="text-xs text-muted-foreground flex items-center gap-2">
-                <Wallet className="w-3 h-3" /> Balance
+                <Wallet className="w-3 h-3" /> {strings.dashBalance}
               </CardTitle>
             </CardHeader>
             <CardContent className="p-4">
               <p className="text-xl font-bold">RM {user.currentBalance.toFixed(2)}</p>
-              <p className="text-[10px] text-muted-foreground">Next in 14 days</p>
+              <p className="text-[10px] text-muted-foreground">{strings.dashNextIn} 14 {strings.dashDays}</p>
             </CardContent>
           </Card>
         </motion.div>
@@ -67,12 +68,12 @@ export function Dashboard() {
           <Card className="glass-card border-primary/20">
             <CardHeader className="p-4 pb-0">
               <CardTitle className="text-xs text-primary flex items-center gap-2">
-                <ShieldCheck className="w-3 h-3" /> Safe Daily
+                <ShieldCheck className="w-3 h-3" /> {strings.dashSafeDaily}
               </CardTitle>
             </CardHeader>
             <CardContent className="p-4">
               <p className="text-xl font-bold text-primary text-glow">RM {safeDailySpend.toFixed(2)}</p>
-              <p className="text-[10px] text-muted-foreground">Limits impulse risk</p>
+              <p className="text-[10px] text-muted-foreground">{strings.dashLimitsImpulse}</p>
             </CardContent>
           </Card>
         </motion.div>
@@ -81,10 +82,10 @@ export function Dashboard() {
       {/* Quick Actions */}
       <div className="grid grid-cols-4 gap-2">
         {[
-          { icon: History, label: "Transaction", href: "/transactions", color: "text-indigo-500", bg: "bg-indigo-500/10" },
-          { icon: Send, label: "Transfer", href: "/transfer", color: "text-emerald-500", bg: "bg-emerald-500/10" },
-          { icon: Wallet, label: "Bills", href: "#", color: "text-amber-500", bg: "bg-amber-500/10" },
-          { icon: ShieldCheck, label: "Shield", href: "/debt-shield", color: "text-primary", bg: "bg-primary/10" },
+          { icon: History, label: strings.actionTransaction, href: "/transactions", color: "text-indigo-500", bg: "bg-indigo-500/10" },
+          { icon: Send, label: strings.actionTransfer, href: "/transfer", color: "text-emerald-500", bg: "bg-emerald-500/10" },
+          { icon: Wallet, label: strings.actionBills, href: "#", color: "text-amber-500", bg: "bg-amber-500/10" },
+          { icon: ShieldCheck, label: strings.actionShield, href: "/debt-shield", color: "text-primary", bg: "bg-primary/10" },
         ].map((action) => (
           <Link key={action.label} href={action.href} className="flex flex-col items-center gap-2 group">
             <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${action.bg} ${action.color} group-hover:scale-105 transition-transform`}>
@@ -99,12 +100,12 @@ export function Dashboard() {
       {/* Risk Indicators */}
       <Card className="glass-card overflow-hidden">
         <CardHeader className="p-4">
-          <CardTitle className="text-sm font-medium">Financial Health Check</CardTitle>
+          <CardTitle className="text-sm font-medium">{strings.sectionHealthCheck}</CardTitle>
         </CardHeader>
         <CardContent className="p-4 pt-0 space-y-4">
           <div className="space-y-2">
             <div className="flex justify-between text-xs">
-              <span className="text-muted-foreground">Cashflow Risk</span>
+              <span className="text-muted-foreground">{strings.riskCashflow}</span>
               <span className={cn(
                 "font-medium",
                 cashflowRisk === 'high' ? "text-rose-500" : cashflowRisk === 'medium' ? "text-amber-500" : "text-emerald-500"
@@ -117,7 +118,7 @@ export function Dashboard() {
 
           <div className="space-y-2">
             <div className="flex justify-between text-xs">
-              <span className="text-muted-foreground">Debt Shield Score</span>
+              <span className="text-muted-foreground">{strings.riskDebtShield}</span>
               <span className="text-emerald-500 font-medium">HEALTHY ({debtRiskScore}/100)</span>
             </div>
             <Progress value={debtRiskScore} className="h-1.5" />
@@ -127,7 +128,7 @@ export function Dashboard() {
 
       {/* Quick Insights */}
       <div className="space-y-3">
-        <h3 className="text-sm font-semibold px-1">Active Insights</h3>
+        <h3 className="text-sm font-semibold px-1">{strings.sectionInsights}</h3>
         <motion.div 
           className="p-3 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex gap-3 items-start cursor-pointer"
           whileHover={{ scale: 1.02 }}
@@ -137,8 +138,8 @@ export function Dashboard() {
             <AlertTriangle className="w-4 h-4" />
           </div>
           <div className="space-y-1">
-            <p className="text-xs font-semibold text-amber-600">Broke Date Warning</p>
-            <p className="text-[11px] text-amber-800/80">Your current spending pace will lead to a RM0 balance by May 18. Click to activate Budget Guard.</p>
+            <p className="text-xs font-semibold text-amber-600">{strings.insightBrokeDate}</p>
+            <p className="text-[11px] text-amber-800/80">{strings.insightBrokeDesc}</p>
           </div>
         </motion.div>
 
@@ -150,8 +151,8 @@ export function Dashboard() {
             <TrendingUp className="w-4 h-4" />
           </div>
           <div className="space-y-1">
-            <p className="text-xs font-semibold text-primary">Savings Opportunity</p>
-            <p className="text-[11px] text-primary-800/80">Saving just RM2.50/day will secure your Laptop Fund by August. Start Auto-Save?</p>
+            <p className="text-xs font-semibold text-primary">{strings.insightSavings}</p>
+            <p className="text-[11px] text-primary-800/80">{strings.insightSavingsDesc}</p>
           </div>
 
         </motion.div>
@@ -160,8 +161,8 @@ export function Dashboard() {
       {/* Mini Transactions */}
       <div className="space-y-3">
         <div className="flex justify-between items-center px-1">
-          <h3 className="text-sm font-semibold">Recent Activity</h3>
-          <button className="text-[10px] text-primary uppercase font-bold tracking-wider">View All</button>
+          <h3 className="text-sm font-semibold">{strings.sectionRecent}</h3>
+          <button className="text-[10px] text-primary uppercase font-bold tracking-wider">{strings.viewAll}</button>
         </div>
         <Card className="glass-card">
           <CardContent className="p-0">

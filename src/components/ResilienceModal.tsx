@@ -2,6 +2,8 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { ShieldCheck, HeartPulse, Wallet, Target, X, Zap } from "lucide-react"
+import { useStore } from "@/store/useStore"
+import { t } from "@/lib/translations"
 
 interface ResilienceModalProps {
   isOpen: boolean
@@ -10,10 +12,13 @@ interface ResilienceModalProps {
 }
 
 export function ResilienceModal({ isOpen, onClose, score }: ResilienceModalProps) {
+  const { language } = useStore()
+  const strings = t[language]
+
   // Determine status color and text based on score
   const statusColor = score >= 80 ? "text-emerald-500" : score >= 60 ? "text-primary" : "text-amber-500"
   const statusBg = score >= 80 ? "bg-emerald-500/10" : score >= 60 ? "bg-primary/10" : "bg-amber-500/10"
-  const statusText = score >= 80 ? "Excellent" : score >= 60 ? "Stable" : "Needs Attention"
+  const statusText = score >= 80 ? strings.resModalExcellent : score >= 60 ? strings.resModalStable : strings.resModalNeedsAttention
 
   return (
     <AnimatePresence>
@@ -48,14 +53,14 @@ export function ResilienceModal({ isOpen, onClose, score }: ResilienceModalProps
                   <h2 className="text-4xl font-black tracking-tight">{score}%</h2>
                   <p className={`text-sm font-bold uppercase tracking-widest ${statusColor}`}>{statusText}</p>
                   <p className="text-xs text-slate-500 pt-1 px-4">
-                    Your Resilience Score is the heartbeat of your financial health.
+                    {strings.resModalDesc}
                   </p>
                 </div>
 
                 <div className="space-y-4 text-left">
                   <div className="space-y-1.5">
                     <div className="flex justify-between text-xs font-medium">
-                      <span className="flex items-center gap-1.5"><Wallet className="w-3.5 h-3.5 text-blue-500" /> Cashflow Safety</span>
+                      <span className="flex items-center gap-1.5"><Wallet className="w-3.5 h-3.5 text-blue-500" /> {strings.resModalCashflow}</span>
                       <span className="text-blue-600">65%</span>
                     </div>
                     <Progress value={65} className="h-2 bg-blue-100" />
@@ -63,7 +68,7 @@ export function ResilienceModal({ isOpen, onClose, score }: ResilienceModalProps
 
                   <div className="space-y-1.5">
                     <div className="flex justify-between text-xs font-medium">
-                      <span className="flex items-center gap-1.5"><Target className="w-3.5 h-3.5 text-emerald-500" /> Savings Progress</span>
+                      <span className="flex items-center gap-1.5"><Target className="w-3.5 h-3.5 text-emerald-500" /> {strings.resModalSavings}</span>
                       <span className="text-emerald-600">40%</span>
                     </div>
                     <Progress value={40} className="h-2 bg-emerald-100" />
@@ -71,7 +76,7 @@ export function ResilienceModal({ isOpen, onClose, score }: ResilienceModalProps
 
                   <div className="space-y-1.5">
                     <div className="flex justify-between text-xs font-medium">
-                      <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-purple-500" /> Debt Health</span>
+                      <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-purple-500" /> {strings.resModalDebt}</span>
                       <span className="text-purple-600">95%</span>
                     </div>
                     <Progress value={95} className="h-2 bg-purple-100" />
@@ -83,9 +88,9 @@ export function ResilienceModal({ isOpen, onClose, score }: ResilienceModalProps
                     <Zap className="w-4 h-4 text-primary" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-primary mb-1">AI Recommendation</h4>
+                    <h4 className="text-xs font-bold text-primary mb-1">{strings.resModalAI}</h4>
                     <p className="text-[10px] text-slate-600 leading-relaxed">
-                      To reach a "Strong" 75% score, try keeping your daily expenses under RM15 for the next 3 days. Your Debt Health is currently excellent!
+                      {strings.resModalAIDesc}
                     </p>
                   </div>
                 </div>

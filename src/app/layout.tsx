@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { CoachFAB } from "@/components/layout/CoachFAB";
+import { SplashScreen } from "@/components/layout/SplashScreen";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,6 +38,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} bg-background text-foreground min-h-screen selection:bg-primary/30`}>
         <main className="min-h-screen">
+          <SplashScreen />
           {children}
         </main>
         <CoachFAB />

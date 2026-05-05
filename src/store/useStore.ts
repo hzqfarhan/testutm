@@ -28,7 +28,10 @@ export interface Agent {
   tools: string[];
 }
 
+import { Language } from '@/lib/translations';
+
 interface ResilienceState {
+  language: Language;
   user: {
     name: string;
     type: string;
@@ -54,9 +57,11 @@ interface ResilienceState {
   toggleBudgetGuard: () => void;
   toggleSurvivalMode: () => void;
   updateResilienceScore: () => void;
+  setLanguage: (lang: Language) => void;
 }
 
 export const useStore = create<ResilienceState>((set, get) => ({
+  language: 'en',
   user: {
     name: 'Aiman',
     type: 'Student',
@@ -100,5 +105,6 @@ export const useStore = create<ResilienceState>((set, get) => ({
   toggleSurvivalMode: () => set((state) => ({ isSurvivalModeActive: !state.isSurvivalModeActive })),
   updateResilienceScore: () => {
     // Logic to recalculate based on state
-  }
+  },
+  setLanguage: (lang) => set({ language: lang })
 }));
