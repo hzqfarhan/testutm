@@ -2,8 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: 'export',
-  basePath: '/utmkathon',
-  assetPrefix: '/utmkathon/',
+  basePath: '/testutm',
+  assetPrefix: '/testutm/',
   images: {
     unoptimized: true,
   },
